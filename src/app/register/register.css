@@ -1,0 +1,12 @@
+.card {
+  border: none;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.btn-primary {
+  font-size: 16px;
+  border-radius: 6px;
+}

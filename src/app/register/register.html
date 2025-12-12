@@ -1,0 +1,74 @@
+<div class="container mt-5">
+
+  <div class="card shadow-lg p-4 mx-auto" style="max-width: 850px; border-radius: 12px;">
+
+    <h3 class="text-center mb-4 fw-bold text-primary">
+      {{ role }} Registration
+    </h3>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+      <div class="row g-3">
+
+        <!-- Name -->
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input class="form-control" formControlName="name">
+        </div>
+
+        <!-- Username -->
+        <div class="col-md-6">
+          <label class="form-label">Username</label>
+          <input class="form-control" formControlName="username">
+        </div>
+
+        <!-- Email -->
+        <div class="col-md-6">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" formControlName="email">
+        </div>
+
+        <!-- Contact Number -->
+        <div class="col-md-6">
+          <label class="form-label">Contact Number</label>
+          <input class="form-control" formControlName="contactNumber">
+        </div>
+
+        <!-- Department -->
+        <div class="col-md-6">
+          <label class="form-label">Department</label>
+          <select class="form-select" formControlName="department">
+            <option value="">Select Department</option>
+            <option *ngFor="let dep of departments" [value]="dep">
+              {{ dep }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Password -->
+        <div class="col-md-6">
+          <label class="form-label">Password</label>
+          <input class="form-control" type="password" formControlName="password">
+        </div>
+
+        <!-- Profile Image -->
+        <div class="col-12">
+          <label class="form-label">Profile Image (Optional)</label>
+          <input class="form-control" type="file" (change)="onFileSelected($event)">
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary w-100 mt-4 py-2">
+        Register
+      </button>
+      <div class="text-center mt-3">
+        <a routerLink="/login" class="text-primary" style="text-decoration: none;">
+          Already have an account? Login
+        </a>
+      </div>
+
+    </form>
+  </div>
+
+</div>

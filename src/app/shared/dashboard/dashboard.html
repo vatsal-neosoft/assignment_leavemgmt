@@ -1,0 +1,43 @@
+<div class="dashboard-container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <h2>Institute Portal</h2>
+      <p class="role">{{ role }}({{ user.department }})</p>
+    </div>
+
+    <nav class="menu">
+      <a routerLink="/dashboard" routerLinkActive="active">📊 Dashboard</a>
+
+      <!-- Leave Management (dynamic route based on role) -->
+      <a [routerLink]="role === 'HOD' ? '/dashboard/leave/hod' : '/dashboard/leave/staff'" 
+         routerLinkActive="active">
+        📝 Leave Management
+      </a>
+
+      <!-- Only for HOD -->
+      <a *ngIf="role === 'HOD'" routerLink="/dashboard/staff-management" routerLinkActive="active">
+        👥 Staff Management
+      </a>
+    </nav>
+
+
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+
+    <header class="topbar">
+      <div>Welcome, {{ user.name }}</div>
+      <button class="logout-btn" routerLink="/login" (click)="logout()">Logout</button>
+    </header>
+
+    <section class="page-area">
+      <router-outlet></router-outlet>
+    </section>
+
+  </main>
+
+</div>

@@ -1,0 +1,16 @@
+.card {
+  border: none;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.btn-primary, .btn-outline-primary, .btn-outline-success {
+  font-size: 16px;
+  border-radius: 6px;
+}
+
+hr {
+  border-top: 1px solid #dee2e6;
+}
