@@ -10,3 +10,8 @@
   font-size: 16px;
   border-radius: 6px;
 }
+
+.error-text{
+  color: red;
+  font-size: 12px;
+}

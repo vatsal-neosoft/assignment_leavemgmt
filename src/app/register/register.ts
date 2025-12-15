@@ -35,7 +35,7 @@ export class Register {
       email: ['', [Validators.required, Validators.email]],
       contactNumber: ['', Validators.required],
       department: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4)]],
       profileImage: [null]
     });
   }
@@ -51,6 +51,7 @@ export class Register {
 
   onSubmit() {
     if (this.registrationForm.invalid) {
+      this.registrationForm.markAllAsTouched();
       this.toastr.error('Please complete all required fields.');
       return;
     }

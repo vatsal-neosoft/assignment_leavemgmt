@@ -12,12 +12,22 @@
       <div class="mb-3">
         <label class="form-label">Username</label>
         <input class="form-control" formControlName="username" placeholder="Enter username">
+        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid" class="error-text">
+            <small *ngIf="loginForm.get('username')?.errors?.['required']">
+              User name is required
+            </small>
+        </div>
       </div>
 
       <!-- Password -->
       <div class="mb-3">
         <label class="form-label">Password</label>
         <input type="password" class="form-control" formControlName="password" placeholder="Enter password">
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="error-text">
+            <small *ngIf="loginForm.get('password')?.errors?.['required']">
+              Password is required
+            </small>
+        </div>
       </div>
 
       <button class="btn btn-primary w-100 py-2" type="submit">Login</button>

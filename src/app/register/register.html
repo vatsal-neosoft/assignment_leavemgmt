@@ -14,24 +14,47 @@
         <div class="col-md-6">
           <label class="form-label">Name</label>
           <input class="form-control" formControlName="name">
+          <div *ngIf="registrationForm.get('name')?.touched && registrationForm.get('name')?.invalid" class="error-text">
+            <small *ngIf="registrationForm.get('name')?.errors?.['required']">
+              Name is required
+            </small>
+          </div>
         </div>
 
         <!-- Username -->
         <div class="col-md-6">
           <label class="form-label">Username</label>
           <input class="form-control" formControlName="username">
+          <div *ngIf="registrationForm.get('username')?.touched && registrationForm.get('username')?.invalid" class="error-text">
+            <small *ngIf="registrationForm.get('username')?.errors?.['required']">
+              User Name is required
+            </small>
+          </div>
         </div>
 
         <!-- Email -->
         <div class="col-md-6">
           <label class="form-label">Email</label>
           <input class="form-control" type="email" formControlName="email">
+          <div *ngIf="registrationForm.get('email')?.touched && registrationForm.get('email')?.invalid" class="error-text">
+            <small *ngIf="registrationForm.get('email')?.errors?.['required']">
+              Email is required
+            </small>
+            <small *ngIf="registrationForm.get('email')?.errors?.['email']">
+              Enter a valid email address
+            </small>
+          </div>
         </div>
 
         <!-- Contact Number -->
         <div class="col-md-6">
           <label class="form-label">Contact Number</label>
           <input class="form-control" formControlName="contactNumber">
+          <div *ngIf="registrationForm.get('contactNumber')?.touched && registrationForm.get('contactNumber')?.invalid" class="error-text">
+            <small *ngIf="registrationForm.get('contactNumber')?.errors?.['required']">
+              Contact Number is required
+            </small>
+          </div>
         </div>
 
         <!-- Department -->
@@ -43,12 +66,25 @@
               {{ dep }}
             </option>
           </select>
+          <div *ngIf="registrationForm.get('department')?.touched && registrationForm.get('department')?.invalid" class="error-text">
+            <small *ngIf="registrationForm.get('department')?.errors?.['required']">
+              Please select department
+            </small>
+          </div>
         </div>
 
         <!-- Password -->
         <div class="col-md-6">
           <label class="form-label">Password</label>
           <input class="form-control" type="password" formControlName="password">
+          <div *ngIf="registrationForm.get('password')?.touched && registrationForm.get('password')?.invalid" class="error-text">
+            <small *ngIf="registrationForm.get('password')?.errors?.['required']">
+              Password is required
+            </small>
+            <small *ngIf="registrationForm.get('password')?.errors?.['minlength']">
+              Password should be of minimum 4 digits
+            </small>
+          </div>
         </div>
 
         <!-- Profile Image -->
@@ -59,7 +95,7 @@
 
       </div>
 
-      <button class="btn btn-primary w-100 mt-4 py-2">
+      <button class="btn btn-primary w-100 mt-4 py-2" [disabled]="registrationForm.invalid">
         Register
       </button>
       <div class="text-center mt-3">

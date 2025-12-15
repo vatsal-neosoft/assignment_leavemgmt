@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -5,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -24,7 +25,8 @@ export class Login {
 
   onLogin() {
     if (this.loginForm.invalid) {
-      this.toastr.error("Please fill all required fields.");
+      this.loginForm.markAllAsTouched();
+      this.toastr.warning("Please fill all required fields.");
       return;
     }
 
