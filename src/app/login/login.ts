@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class Login {
 
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -23,7 +24,7 @@ export class Login {
 
   onLogin() {
     if (this.loginForm.invalid) {
-      alert('Please fill all required fields.');
+      this.toastr.error("Please fill all required fields.");
       return;
     }
 
@@ -36,10 +37,10 @@ export class Login {
     if (user) {
       localStorage.setItem('userRole', user.role);
       localStorage.setItem('loggedInUser', JSON.stringify(user));
-      alert(`Logged in as ${user.role}!`);
+      this.toastr.success(`Logged in as ${user.role}!`);
       this.router.navigate(['dashboard']);
     } else {
-      alert('Invalid username or password!');
+      this.toastr.error('Invalid username or password!');
     }
 }
 

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-staff-mgmt',
@@ -24,7 +25,7 @@ export class StaffMgmt {
 
   hodDepartment!: string;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
   ngOnInit() {
     // Get logged-in HOD info
@@ -99,7 +100,7 @@ export class StaffMgmt {
 
     // Prevent duplicate username
     if (users.some((u: any) => u.username === this.addStaffForm.value.username)) {
-      alert('Username already exists!');
+      this.toastr.warning('Username already exists!');
       return;
     }
 
@@ -111,7 +112,7 @@ export class StaffMgmt {
 
     users.push(newStaff);
     localStorage.setItem('users', JSON.stringify(users));
-    alert('Staff added successfully!');
+    this.toastr.success('Staff added successfully!');
     this.addStaffForm.reset();
     this.showAddForm = false;
     this.loadStaff();

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RegisterService } from '../services/register';
 import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class Register {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private regService: RegisterService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class Register {
 
   onSubmit() {
     if (this.registrationForm.invalid) {
-      alert('Please complete all required fields.');
+      this.toastr.error('Please complete all required fields.');
       return;
     }
 
@@ -60,7 +62,7 @@ export class Register {
     safeData.role = this.role;
 
     if (users.some((u: any) => u.username === safeData.username)) {
-      alert('Username already exists!');
+      this.toastr.warning('Username already exists!');
       return;
     }
 
@@ -72,7 +74,7 @@ export class Register {
 
       this.regService.register(this.registrationForm.value, this.role)
         .subscribe((res:any) => {
-          alert(res['message']);
+          this.toastr.success(res['message']);
           this.router.navigate(['/login']);
       });
     }
